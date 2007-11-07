@@ -1,5 +1,10 @@
 #!/usr/bin/perl
-
+#
+# Stupid script to inject "line noise" into text.  Injects a random
+# symbol from 1-25% of the time per letter of the text file.
+#
+# Usage ./linenoise.pl < texttolinenoise.txt
+#
 @linenoise = qw( ! @ # $ % ^ & * \( \) ~ _ - + = \{ \[ \} \] | \ ; : ' " , < . > / ? ~ `);
 
 foreach $line (<STDIN>) {
