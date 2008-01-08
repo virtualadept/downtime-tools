@@ -21,7 +21,13 @@ foreach $downtimeline (<STDIN>) {
 	# We hit a paragraph break, lets do a bunch of stuff to the array
 	if ($downtimeline =~ /^(\s|\n)+$/) {
 		chomp(@dtparagraph);
-		print wrap('','',@dtparagraph) . "\n\n";	
+		# If this is a dialog paragraph, lets format it different
+		if ($dtparagraph[1] =~ /^(\w+\:)/) {
+			$namelength = " " x (length($1) + 3);
+			print wrap(" ",$namelength,@dtparagraph) . "\n\n";
+			@dtparagraph = undef;
+		}
+		else { print wrap('','',@dtparagraph) . "\n\n";	}
 		@dtparagraph = undef;
 	}
 }
